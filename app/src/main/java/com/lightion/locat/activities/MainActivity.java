@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.lightion.locat.R;
 import com.lightion.locat.fragments.DiscussionFragment;
+import com.lightion.locat.fragments.GroupFragment;
 import com.lightion.locat.fragments.SettingFragment;
 import com.lightion.locat.helper.BottomNavigationViewHelper;
 
@@ -40,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.settings:
                         SettingFragment sf = new SettingFragment();
                         transaction.replace(R.id.container_main, sf);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        return true;
+                    case R.id.pin:
+                        GroupFragment gf = new GroupFragment();
+                        transaction.replace(R.id.container_main,gf);
                         transaction.addToBackStack(null);
                         transaction.commit();
                         return true;
