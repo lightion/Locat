@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.lightion.locat.R;
+import com.lightion.locat.fragments.AskFragment;
+import com.lightion.locat.fragments.ChatListFragment;
 import com.lightion.locat.fragments.DiscussionFragment;
 import com.lightion.locat.fragments.GroupFragment;
 import com.lightion.locat.fragments.SettingFragment;
@@ -27,11 +29,12 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation_bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         fm=getSupportFragmentManager();
-        DiscussionFragment df=(DiscussionFragment)fm.findFragmentById(R.id.container_main);
-        if(df==null){
-            df=new DiscussionFragment();
-            fm.beginTransaction().add(R.id.container_main, df).commit();
+        ChatListFragment gf=(ChatListFragment) fm.findFragmentById(R.id.container_main);
+        if(gf==null){
+            gf=new ChatListFragment();
+            fm.beginTransaction().add(R.id.container_main, gf).commit();
         }
+        bottomNavigationView.setSelectedItemId(R.id.chat);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -50,9 +53,21 @@ public class MainActivity extends AppCompatActivity {
                         transaction.addToBackStack(null);
                         transaction.commit();
                         return true;
+                    case R.id.chat:
+                        ChatListFragment cf = new ChatListFragment();
+                        transaction.replace(R.id.container_main, cf);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        return true;
+                    case R.id.discuss:
+                        AskFragment af= new AskFragment();
+                        transaction.replace(R.id.container_main, af);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                        return true;
                     default:
-                        DiscussionFragment df = new DiscussionFragment();
-                        transaction.replace(R.id.container_main, df);
+                        AskFragment acf= new AskFragment();
+                        transaction.replace(R.id.container_main, acf);
                         transaction.addToBackStack(null);
                         transaction.commit();
                         break;
