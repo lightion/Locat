@@ -7,8 +7,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.lightion.locat.R;
+import com.lightion.locat.fragments.AskDetailsFragment;
 import com.lightion.locat.fragments.AskFragment;
 import com.lightion.locat.fragments.ChatListFragment;
 import com.lightion.locat.fragments.DiscussionFragment;
@@ -21,11 +23,21 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private BottomNavigationView bottomNavigationView;
     private FragmentTransaction transaction;
+    private static MainActivity activity;
+
+    public static MainActivity getActivity() {
+        return activity;
+    }
+
+    public static void setActivity(MainActivity activity) {
+        MainActivity.activity = activity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MainActivity.setActivity(this);
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation_bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         fm=getSupportFragmentManager();
@@ -75,5 +87,21 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    public void onLoadAskNew(){
+        AskDetailsFragment adf = new AskDetailsFragment();
+        fm.beginTransaction()
+                .replace(R.id.container_main,adf)
+                .addToBackStack(null)
+                .commit();
+    }
+    public void hideBottomNavigation(){
+//        View decorView = getWindow().getDecorView();
+//        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        bottomNavigationView.setVisibility(View.INVISIBLE);
+    }
+    public void showBottomNavigation(){
+        if(bottomNavigationView.getVisibility()==View.INVISIBLE)
+            bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }
