@@ -11,19 +11,22 @@
 
         <android.support.v7.widget.CardView
             android:layout_margin="5dp"
+            android:minHeight="50dp"
             android:elevation="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:focusableInTouchMode="true"
                 android:id="@+id/searchBar"
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:orientation="horizontal">
 
                 <EditText
-                    android:isScrollContainer="false"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
