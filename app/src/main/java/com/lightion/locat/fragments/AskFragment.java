@@ -39,9 +39,8 @@ public class AskFragment extends Fragment {
         View v=inflater.inflate(R.layout.fragment_ask, container, false);
         addNewAskImageView=v.findViewById(R.id.imageAskNew);
         list=new ArrayList<>();
-        list.add(new AskCards("Puchna Chutiye", "Puchh raha hoo Bhenchod"));
-        list.add(new AskCards("Sex in Hindi", "What is the translation of sex in hindi?"));
-        list.add(new AskCards("Hot Girls","Are there any hot girls in this location?"));
+        list.add(new AskCards("Place to Eat", "Please Suggest good place to eat"));
+        list.add(new AskCards("Nearby Sight Seeing", "What are places to visit in this location?"));
         recyclerView = v.findViewById(R.id.askListRecyclerView);
         layoutManager= new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

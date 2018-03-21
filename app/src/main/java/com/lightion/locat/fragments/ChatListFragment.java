@@ -37,7 +37,7 @@ public class ChatListFragment extends Fragment {
         View v=inflater.inflate(R.layout.fragment_chat_list, container, false);
         list=new ArrayList<>();
         list.add(new ChatCards(R.mipmap.ic_launcher, "BedaGarg", "Message aa gaya bhai", true ));
-        list.add(new ChatCards(R.mipmap.ic_launcher, "Raes Bekaar Movie", "Ghathiya thi bhenchod", false ));
+        list.add(new ChatCards(R.mipmap.ic_launcher, "Raes Bekaar Movie", "Ghathiya thi", false ));
         recyclerView=v.findViewById(R.id.chatListRecyclerView);
         layoutManager=new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
